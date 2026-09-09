@@ -1,3 +1,14 @@
+#Operações Matemáticas
+
+print('Bem-vindo ao Senai')
+print(1 + 3) #Soma
+print(8 - 8) #Subtração
+print(9 * 98) #Multiplicação
+print(9 ** 3) #Potenciação
+print(81 % 2) #Resto da divisão inteiro
+print(81 // 2) #Resultado da divisão inteira
+print(81 // 2) #Resultado da divisão inteira
+
 #String
 
 senai = 'Luis Eulálio'
