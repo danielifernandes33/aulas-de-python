@@ -45,7 +45,7 @@ print(nome)
 #string [] - fatiamento index
 #tuplas ()
 #listas frutas = ['banana', 'morango', 'ameixa']
-#       frutas[0] = 'banana'
+#frutas[0] = 'banana'
 
 #dicionario JSON
 
@@ -138,3 +138,12 @@ while True:
     else:
         print('Opção Inválida')
 
+#Tratameto de Erro
+
+try:
+    n = int(input('Digite um número: '))
+    x = 10/0
+except ZeroDivisionError:
+    print('Não podemos dividir por 0')
+except ValueError:
+    print('Só aceitamos números')
