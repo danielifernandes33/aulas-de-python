@@ -660,3 +660,50 @@ print(sorted(idades))
 # reverse=True faz a inversão da ordem
 print(sorted(idades, reverse=True))
 # Resultado: [87, 65, 49, 43, 25, 22, 9, 8]
+
+# Lista é uma estrutura ordenada, indexada, mutável, heterogênea e que permite valores duplicados.
+
+carro = ['Ferrari', 'Vermelha', 2026]
+# Cria uma variável chamada 'carro' que guarda uma lista com três itens: o nome do carro, a cor e o ano.
+
+# Alteração
+carro[1] = 'Amarelo' 
+# Altera o item que está no índice 1 da lista. O índice 1 era 'Vermelha' e passa a ser 'Amarelo'.
+
+# Adição
+carro.insert(1, 'Gasolina') # Insere 'Gasolina' no índice 1. Os itens que já estavam a partir dessa posição são deslocados uma posição para frente.
+carro.append('979 CV') # Adiciona '979 CV' no final da lista.
+print(carro) # Mostra na tela a lista 'carro' depois das alterações e adições.
+
+# Remover Informações
+carro.pop(4) # Remove o item que está no índice 4 da lista.
+carro.remove('Gasolina') # Procura o item 'Gasolina' na lista e remove esse item.
+print(carro) # Mostra na tela a lista 'carro' depois das remoções.
+
+# Entrada
+lista_idades = [] # Cria uma lista vazia chamada 'lista_idades' que será usada para armazenar as idades digitadas.
+
+for i in range(5): # Cria um loop que será executado 5 vezes. A variável 'i' controla as repetições.
+    lista_idades.append(int(input('N: '))) # Pede um valor ao usuário, transforma o valor digitado em número inteiro e adiciona esse número ao final da lista.
+
+print(lista_idades) # Exibe na tela a lista com todas as 5 idades informadas pelo usuário.
+
+# Cópia de listas
+
+a = [1, 2, 3] # Cria uma lista chamada 'a' com os valores 1, 2 e 3.
+
+b = a[:] # Cria uma cópia da lista independente de 'a'. Os dois têm os mesmos valores, mas são listas diferentes.
+b = a # Cria uma cópia dependente da lista 'a'. As duas ficam "espelhadas", apontando para a mesma lista.
+b.append(4) # Adiciona o número 4 no final da lista 'b'. A lista 'a' não é alterada.
+
+print(b) # Exibe a lista 'b': [1, 2, 3, 4].
+print(a) # Exibe a lista 'a': [1, 2, 3].
+
+#Resumo
+b = a    # Cópia dependente → listas espelhadas
+b = a[:] # Cópia independente → cria uma nova lista
+
+#Lista aninhada
+
+
+
