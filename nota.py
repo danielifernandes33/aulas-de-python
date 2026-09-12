@@ -705,5 +705,20 @@ b = a[:] # Cópia independente → cria uma nova lista
 
 #Lista aninhada
 
+# Coluna
+Alunos = [['Maria', 22], ['João', 53], ['Thiago', 32]] # Cria uma lista com 3 listas internas. Cada lista representa um aluno com nome e idade.
+
+Alunos = [['Maria', 'João', 'Thiago'], [22, 53, 32]] # Organiza os dados em duas listas: a primeira guarda os nomes e a segunda guarda as idades.
+
+Alunos = [[], []] # Cria uma lista com duas listas vazias: uma será usada para os nomes e a outra para as idades.
+
+for i in range(3): # Cria um loop que será executado 3 vezes para cadastrar 3 alunos.
+    Alunos[0].append(input('Nome: ')) # Pede o nome do aluno e adiciona o valor na primeira lista, que está no índice 0.
+    Alunos[1].append(int(input('Idade: '))) # Pede a idade, transforma o valor em inteiro e adiciona na segunda lista, que está no índice 1.
+
+print(Alunos) # Exibe na tela a lista completa com os nomes e as idades cadastradas.
+
+
+
 
 
