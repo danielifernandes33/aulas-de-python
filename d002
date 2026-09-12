@@ -1,0 +1,19 @@
+# Escreva um programa que crie uma lista vazia e permita que o usuário insira numeros nessa
+# lista até que ele digte um nuero negativo
+
+numeros = [] # Cria uma lista vazia para armazenar os números.
+
+while True: # Cria um loop que continuará repetindo até receber um comando para parar.
+    try:
+        numero = int(input('Digite um número: ')) # Pede um número ao usuário e transforma o valor em inteiro.
+
+        if numero < 0: # Verifica se o número digitado é negativo.
+            break # Encerra o loop quando o usuário digitar um número negativo.
+
+        numeros.append(numero)  # Adiciona o número digitado à lista.
+
+    except ValueError:
+        print("Só aceitamos números")
+
+
+print(numeros) # Exibe a lista com os números que foram digitados.
