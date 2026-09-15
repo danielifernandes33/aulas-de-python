@@ -719,6 +719,227 @@ for i in range(3): # Cria um loop que será executado 3 vezes para cadastrar 3 a
 print(Alunos) # Exibe na tela a lista completa com os nomes e as idades cadastradas.
 
 
+# ===================== DICIONÁRIOS =====================
+
+# O QUE É UM DICIONÁRIO EM PYTHON
+#
+# Um dicionário (dict) é uma estrutura de dados do Python que guarda informações em pares de chave: valor, em vez de guardar só valores soltos como numa lista.
+#
+# Exemplo:
+# aluno = {'Nome': 'Luis Tatin', 'Idade': 45}
+#
+# Aqui, 'Nome' e 'Idade' são as chaves, e 'Luis Tatin' e 45 são os valores associados a elas.
+#
+#
+# PRINCIPAIS CARACTERÍSTICAS
+#
+# 1) Pares chave-valor
+# Cada informação é acessada através de uma chave, não de uma posição numérica como em listas.
+# Ex.: aluno['Nome'] em vez de aluno[0]
+#
+# 2) Chaves únicas
+# Não pode haver duas chaves iguais no mesmo dicionário. Se você atribuir um valor a uma chave que já existe, o valor antigo é sobrescrito.
+#
+# 3) Chaves devem ser "hashable" (imutáveis)
+# Normalmente são strings, números ou tuplas. Não pode usar listas ou outros dicionários como chave, porque eles são mutáveis.
+#
+# 4) Valores podem ser qualquer coisa
+# Strings, números, listas, outros dicionários, funções etc. Sem restrição.
+#
+# 5) Mutável
+# Dá para adicionar, alterar e remover pares depois de criado:
+# aluno['Sexo'] = 'M'   -> adiciona
+# aluno['Idade'] = 46   -> altera
+# del aluno['Sexo']     -> remove
+#
+# 6) Mantém a ordem de inserção
+# Desde o Python 3.7, os itens são percorridos na mesma ordem em que foram adicionados (antes disso a ordem não era garantida).
+#
+# 7) Tamanho dinâmico
+# Cresce ou diminui livremente, sem precisar definir um tamanho fixo.
+#
+# 8) Iterável
+# Dá para percorrer chaves (.keys()), valores (.values()) ou os dois juntos (.items()).
+#
+# 9) Busca rápida
+# Acessar um valor por chave é muito eficiente (tecnicamente O(1) na média), porque internamente o Python usa uma tabela hash. Bem mais rápido que procurar um item numa lista grande.
+#
+#
+# RESUMO
+# Dicionários são ideais quando você quer nomear cada informação (como um registro: nome, idade, sexo) em vez de só empilhar valores em sequência.
+
+
+# Cria um dicionário com duas chaves: 'Nome' e 'Idade'
+df = {'Nome': 'Luis Tatin', 'Idade': 45}
+
+print(df['Nome'])   # Acessa o valor associado à chave 'Nome' e imprime na tela
+df['Sexo'] = 'M'    # Cria uma NOVA chave 'Sexo' no dicionário e atribui o valor 'M'
+del df['Idade']     # Remove a chave 'Idade' (e seu valor) do dicionário
+
+# ----- Mostrar dados -----
+print(df)            # Imprime o dicionário completo (todas as chaves e valores)
+print(df.values())   # Imprime só os VALORES do dicionário (retorna um objeto dict_values)
+print(df.keys())     # Imprime só as CHAVES do dicionário (retorna um objeto dict_keys)
+print(df.items())    # Imprime os pares (chave, valor) como tuplas (objeto dict_items)
+
+# ----- Itera os valores em sequência -----
+quebra_linha()          # Chama a função externa para separar visualmente a saída
+for i in df.values():   # Percorre cada VALOR do dicionário, um por vez
+    print(i)              # Imprime o valor da vez (i recebe cada valor, não a chave)
+
+# ----- Itera as chaves em sequência -----
+quebra_linha()           # Separa novamente a saída no console
+
+for i in df.keys():      # Percorre cada CHAVE do dicionário, uma por vez
+    print(i)               # Imprime a chave da vez
+
+# ----- Criação de lista auxiliar -----
+chaves = [i for i in df.keys()]
+# List comprehension: para cada chave (i) em df.keys(), guarda i numa nova lista.
+# Equivale a: chaves = list(df.keys())
+print(chaves)   # Imprime a lista de chaves criada
+
+
+# ===================== 1 - LISTA COM DICIONÁRIOS =====================
+# Aqui cada elemento da lista é um dicionário, representando um "carro"
+df = [{'Marca': 'A', 'Modelo': 'X', 'Ano': 2000},
+      {'Marca': 'B', 'Modelo': 'Y', 'Ano': 2001},
+      {'Marca': 'C', 'Modelo': 'Z', 'Ano': 2002}]
+
+for carro in df:   # Percorre a lista; a cada volta, 'carro' é um dos dicionários
+    print(f'Marca : {carro["Marca"]} - Modelo: {carro["Modelo"]}')
+    # Imprime a marca e o modelo do carro atual.
+    # Observação: no seu código original as aspas internas eram simples,
+    # iguais às da f-string (carro['Marca']). Isso só funciona em Python 3.12+;
+    # em versões anteriores dá erro de sintaxe. Aqui troquei as internas para
+    # aspas duplas para garantir compatibilidade com qualquer versão.
+
+# ----- Exemplo Manual (cadastro via input) -----
+df = []       # Lista vazia que vai guardar todos os dicionários de carros cadastrados
+carro = {}    # Dicionário "molde", reaproveitado a cada volta do laço
+try:
+    for i in range(3):   # Repete o cadastro 3 vezes (i não é usado, só conta as voltas)
+        carro['Marca'] = input('Marca: ')      # Lê a marca digitada e guarda no dicionário
+        carro['Modelo'] = input('Modelo: ')    # Lê o modelo digitado e guarda no dicionário
+        carro['Ano'] = int(input('Ano: '))     # Lê o ano digitado e converte para inteiro
+
+        df.append(carro.copy())
+        # Adiciona uma CÓPIA do dicionário 'carro' à lista df.
+        # É essencial usar .copy(): sem ela, todos os itens da lista
+        # apontariam para o MESMO dicionário na memória, e ao final
+        # todos teriam os dados do último cadastro feito.
+
+    print(df)   # Imprime a lista completa de carros cadastrados
+except ValueError:
+    # Esse erro acontece se o usuário digitar algo que não seja um
+    # número válido no campo 'Ano' (int() não consegue converter)
+    print('Só aceitamos números')
+
+
+# ===================== 2 - DICIONÁRIO COM LISTAS =====================
+# Agora a estrutura é invertida: um único dicionário onde cada chave
+# guarda uma LISTA de valores (como se fossem "colunas" de uma tabela)
+df = {'Marca': ['A', 'B', 'C'],
+      'Modelo': ['X', 'Y', 'Z'],
+      'Ano': [2000, 2001, 2002]}
+
+# print(f'A média é {sum(df['Ano'])/len(df['Ano'])}')
+# (linha deixada comentada no original) Calcularia a média dos anos:
+# soma todos os valores da lista df['Ano'] e divide pela quantidade de itens
+
+# ----- Exemplo Manual -----
+df = {}   # Reinicia df como um dicionário vazio
+
+# Input do dicionário com 1 linha
+df['Marca'] = [input('Marca: ') for i in range(3)]
+# List comprehension: pede 3 marcas ao usuário, uma por vez,
+# e já guarda o resultado como lista na chave 'Marca'
+df['Modelo'] = [input('Modelo: ') for i in range(3)]
+# Mesma lógica, agora pedindo os 3 modelos
+df['Ano'] = [int(input('Ano: ')) for i in range(3)]
+# Mesma lógica, pedindo os 3 anos e convertendo cada um para inteiro
+
+for i, j in df.items():   # Percorre os pares (chave, valor) do dicionário
+    print(f'{i} - {j}')     # Imprime a chave (i) e a lista de valores correspondente (j)
+
+# ----- Exemplo compatível de uma lista -----
+marcas = []   # Lista vazia para guardar as marcas
+for i in range(3):
+    marcas.append('Digite uma Marca: ')
+    # ATENÇÃO (possível bug do original): aqui está sendo adicionado o
+    # TEXTO literal 'Digite uma Marca: ' na lista, e não uma marca
+    # realmente digitada pelo usuário. Para capturar o que o usuário
+    # digita, seria preciso usar:
+    #     marcas.append(input('Digite uma Marca: '))
+
+df['Marca'] = marcas[:]
+# Substitui a lista de marcas do dicionário por uma CÓPIA da lista 'marcas'.
+# O uso de [:] cria uma nova lista com os mesmos elementos, evitando que
+# df['Marca'] e marcas apontem para o mesmo objeto na memória.
+
+
+# ===================== EXERCÍCIO: CADASTRO DE ALUNOS =====================
+# Enunciado:
+# Crie um programa que leia o nome, sexo e idade de vários Alunos,
+# guardando os dados de cada aluno em um dicionário e
+# todos os dicionários em uma lista. No final mostre:
+#   - Quantas pessoas foram cadastradas
+#   - A média de idade do grupo
+#   - Uma lista com todas as mulheres
+#   - Uma lista com todas as pessoas com idade acima da média
+
+# Exemplo de estrutura esperada, só para referência/estudo
+# (dicionário de dicionários: chave = nome, valor = dados do aluno)
+alunos = {'A': {'Idade': 45, 'Sexo': 'M'},
+          'B': {'Idade': 15, 'Sexo': 'F'},
+          'C': {'Idade': 35, 'Sexo': 'M'}}
+
+
+# ----- Início da solução real -----
+alunos = {}   # Reinicia 'alunos' como um dicionário vazio: chave = nome, valor = dados
+
+while True:   # Laço infinito; só é interrompido pelo 'break' lá dentro
+    nome = input('Nome [Sair para parar]: ').strip().title()
+    # Lê o nome digitado, remove espaços extras no início/fim (strip)
+    # e deixa a primeira letra de cada palavra em maiúscula (title)
+    if nome == 'Sair':   # Se o usuário digitar "sair" (vira "Sair" após o .title())
+        break              # Encerra o laço de cadastro
+
+    alunos[nome] = {'Idade': int(input('Idade: ')),
+                     'Sexo': input('Sexo[M/F]: ').strip().upper()[0]}
+    # Cria (ou sobrescreve, se o nome já existir) a entrada do dicionário
+    # 'alunos' para a chave 'nome', com um dicionário interno contendo:
+    #   'Idade' -> valor digitado, convertido para inteiro
+    #   'Sexo'  -> valor digitado, sem espaços, em maiúsculo,
+    #              pegando só o primeiro caractere ([0])
+    #              ex.: 'feminino' -> 'FEMININO' -> 'F'
+
+# ----- Lista Mulheres -----
+lista_nomes_mulheres = []   # Lista vazia para guardar os nomes das alunas
+for k, v in alunos.items():
+    # k = nome do aluno (chave); v = dicionário {'Idade': ..., 'Sexo': ...} (valor)
+    if v['Sexo'] == 'F':                # Verifica se o sexo cadastrado é Feminino
+        lista_nomes_mulheres.append(k)  # Se for, adiciona o nome à lista de mulheres
+
+# ----- Lista Pessoas Acima da média -----
+lista_nomes_acima_media = []   # Lista vazia para guardar quem está acima da média de idade
+for k, v in alunos.items():
+    # Recalcula a média de idade a cada volta do laço (não é o mais eficiente,
+    # mas funciona): soma a idade de todos os alunos e divide pela quantidade
+    if v['Idade'] > sum(aluno['Idade'] for aluno in alunos.values()) / len(alunos):
+        lista_nomes_acima_media.append(k)
+        # Se a idade do aluno atual for maior que a média, guarda o nome dele
+
+quebra_linha()   # Separa visualmente a saída antes de mostrar o resumo final
+
+print(f'Quantas pessoas foram cadastradas: {len(alunos)}'
+      # len(alunos) conta quantas chaves (alunos) existem no dicionário
+      f'\nA média de idade é {sum(aluno["Idade"] for aluno in alunos.values()) / len(alunos)}'
+      # Soma todas as idades dos alunos e divide pela quantidade de alunos
+      f'\nA lista de mulheres: {lista_nomes_mulheres}'
+      # Mostra a lista com os nomes das alunas cadastradas
+      f'\nA lista das pessoas com idade acima da média: {lista_nomes_acima_media}')
+      # Mostra a lista com os nomes de quem tem idade acima da média
 
 
 
