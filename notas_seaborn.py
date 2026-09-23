@@ -77,5 +77,29 @@ plt.show()
 sns.pointplot(x = 'day', y = 'total_bill', data=gorjeta)
 plt.show()
 
+voos = sns.load_dataset('flights')
+
+#Gráfico de linha
+sns.lineplot(data=voos, x = 'year', y = 'passengers', marker='o')
+plt.show()
+
+#Plotagem de matriz
+vp = voos.pivot_table(index='month', columns='year', values='passengers')
+
+#Mapa de calor
+sns.heatmap(vp)
+plt.show()
+
 sns.catplot(x = 'day', y = 'total_bill', data=gorjeta, kind='bar')
+plt.show()
+
+#Mapa de Cluster
+sns.clustermap(vp, standard_scale=1)
+plt.show()
+
+#Salvar figuras
+sns.histplot(data=gorjeta, x = 'total_bill', bins=30)
+plt.title('A conta típica fica entre 10 e 20')
+plt.tight_layout()
+plt.savefig('Histograma.png', dpi = 200)
 plt.show()
