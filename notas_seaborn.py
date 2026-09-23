@@ -69,3 +69,13 @@ plt.show()
 #Diagrama de Violino
 sns.violinplot(x = 'day', y = 'total_bill', data=gorjeta, hue='sex', split=True)
 plt.show()
+
+#Gráfico de Enxame
+sns.swarmplot(x = 'day', y = 'total_bill', data=gorjeta)
+plt.show()
+
+sns.pointplot(x = 'day', y = 'total_bill', data=gorjeta)
+plt.show()
+
+sns.catplot(x = 'day', y = 'total_bill', data=gorjeta, kind='bar')
+plt.show()
